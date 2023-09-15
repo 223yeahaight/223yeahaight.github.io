@@ -9,6 +9,11 @@ function init(){
     context = canvas.getContext('2d');
     canvas.height = 700;
     canvas.width = 600; 
+
+    canvas.addEventListener('mousedown', handleMouseClick)
+    canvas.addEventListener("contextmenu", e => e.preventDefault());
+    window.addEventListener('keydown', function(event){
+        if(event.key == 'r'){location.reload();}})
     
     
     generateBoard();
@@ -37,8 +42,6 @@ function updateState(){
 
 }
 
-document.getElementById('canvasid').addEventListener('mousedown', (event => handleMouseClick(event)), false)
-document.getElementById('canvasid').addEventListener("contextmenu", e => e.preventDefault(), false);
 
 var mouseX;
 var mouseY;
@@ -56,7 +59,7 @@ function handleMouseClick(event){
             y: mouseY
         }})].isBomb == true){
             alert("you lost ;(((");
-            location.reload();
+            canvas.removeEventListener('mousedown', handleMouseClick);
         }
         else if(tileBoard[getTileNumber({tile:{
             x: mouseX,
@@ -73,8 +76,8 @@ function handleMouseClick(event){
                 y: mouseY
             }})])
         }
+        checkIfWon();
     }else if(event.which == 3){
-        console.log('rmb click');
         mark(tileBoard[getTileNumber({tile:{
             x: mouseX,
             y: mouseY
@@ -127,14 +130,11 @@ function generateBombList(){
         num = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
         while(arrIncludes(bombList, num)){
             num = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
-            console.log(num, 'already exist, rolling again');
+
         }
-        console.log(num, ' is not in ', bombList);
-        console.log('adding', num);
         bombList.push(num);
     }
     bombList.shift();
-    console.log(bombList);
 }
 
 function generateBombs(){
@@ -216,6 +216,24 @@ function mark(tile){
     }else if(tile.type == 'marked'){
         tile.type = 'hidden';
         markcount--;
+    }
+}
+
+function countVivids(){
+    var ans = 0;
+    for(var tile of tileBoard){
+        if(tile.type == 'vivid' && tile.isBomb == false){
+            ans++;
+        }
+    }
+    return ans;
+}
+
+function checkIfWon(){
+    console.log(countVivids());
+    if (countVivids() >= 80){
+        alert('YOU WON!!!!');
+        canvas.removeEventListener('mousedown', handleMouseClick);
     }
 }
 
