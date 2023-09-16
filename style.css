@@ -28,6 +28,17 @@ body{
     margin-top: 10px;
     margin-right: 20px;
     font-size: 25px;
+    
+}
+#show{
+    color: rgb(214, 214, 214);
+}
+#show:hover + #hide{
+    display: block;
+}
+
+#hide{
+    display: none;
 }
 
 canvas{  
@@ -40,6 +51,7 @@ p{
     margin-bottom: 20px;
     margin-top: 10px;
 }
+
 
 img{
     border: 3px solid black;
