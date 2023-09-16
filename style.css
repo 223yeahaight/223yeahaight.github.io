@@ -21,7 +21,13 @@ body{
 }
 
 #right{
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    align-items: end;
+    margin-top: 10px;
+    margin-right: 20px;
+    font-size: 25px;
 }
 
 canvas{  
@@ -33,4 +39,9 @@ p{
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+img{
+    border: 3px solid black;
+    border-radius: 5px;
 }
