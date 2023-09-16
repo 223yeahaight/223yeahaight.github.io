@@ -3,12 +3,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
+    
     <link rel="stylesheet" href="style.css">
-    <p>instructions</p>
 </head>
 <body>
+    <div id="left">
+        <p>instructions:</p>
+        <p>leftclick - reveal tile</p>
+        <p>rightclick - mark tile</p>
+        <p>press 'r' to restart</p>
+        <p>number on a tile represents number of bombs on adjacent tiles</p>
+        <p>there are 20 bombs on the board</p>
+        <p>good luck!</p>
+
+    </div>
+    <div id="center">
+        <p><b>minesweeper</b></p>
+        <canvas></canvas>
+    </div>
+    <div id="right"></div>
     
-    <canvas id = 'canvasid'></canvas>
     <script src="game.js"></script>
     
 </body>

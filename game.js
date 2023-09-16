@@ -3,6 +3,8 @@ var canvas;
 var context;
 var tileBoard = [];
 var markcount = 0;
+var won = false;
+var lost = false;
 
 function init(){
     canvas = document.querySelector('canvas');
@@ -35,7 +37,13 @@ function gameLoop(timeStamp){
     fps = Math.round(1 / secondsPassed);
     updateState();
     render();
-    window.requestAnimationFrame(gameLoop);
+    if(won == false && lost == false){
+        window.requestAnimationFrame(gameLoop);
+    }else if(won == true){
+        wonScreen();
+    }else if (lost == true){
+        lostScreen();
+    }
 }
 
 function updateState(){
@@ -58,8 +66,8 @@ function handleMouseClick(event){
             x: mouseX,
             y: mouseY
         }})].isBomb == true){
-            alert("you lost ;(((");
             canvas.removeEventListener('mousedown', handleMouseClick);
+            lost = true;
         }
         else if(tileBoard[getTileNumber({tile:{
             x: mouseX,
@@ -229,11 +237,23 @@ function countVivids(){
     return ans;
 }
 
+function lostScreen(){
+    context.fillStyle = 'black';
+    context.font = '60px courier'
+    context.fillText('you lost ;(((', 80, 100);
+
+}
+function wonScreen(){
+    context.fillStyle = 'black';
+    context.font = '60px courier';
+    context.fillText('YOU WON!!!!', 100, 100);
+}
+
 function checkIfWon(){
     console.log(countVivids());
     if (countVivids() >= 80){
-        alert('YOU WON!!!!');
         canvas.removeEventListener('mousedown', handleMouseClick);
+        won = true;
     }
 }
 

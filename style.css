@@ -1,21 +1,36 @@
-p{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 40px;
-    margin: auto;
-}
-
-head{
-    justify-content: center;
-}
-
 body{
+    display: flex;
+    flex-direction: row;
     background-color: lightgray;
 
 }
-
-canvas{
+#left{
     display: flex;
-    margin: auto;
+    flex-direction: column;
+    align-items: start;
+    flex: 1;
+    font-size: 40px;
+}
+#center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    font-size: 60px;
+    
+}
+
+#right{
+    flex: 1;
+}
+
+canvas{  
     border: 4px solid black;
     border-radius: 10px;
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
